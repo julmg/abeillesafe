@@ -45,6 +45,7 @@ class HivesManagerController extends AbstractController
             'hives' => $hives,
             'lastreports' => $lastreports,
             'useremail' => $this->getUser()->getEmail(),
+            'userid' => $this->getUser()->getId(),
             'alerts' => $alerts,
             'notDismissedAlertsCount' => $notDismissedAlertsCount
         ]);

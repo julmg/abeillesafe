@@ -30,8 +30,10 @@
             <div class="d-sm-flex align-items-center justify-content-between mb-4">
                 <h1 class="h3 mb-0 text-gray-800">Gestion de vos {{ hives|length }} ruches</h1>
                 <div>
+                    {% if userid != 9 %}
                     <a href="{{ path("create_hive") }}" class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm"><i
                             class="fas fa-plus fa-sm text-white-50"></i> Ajouter une ruche</a>
+                    {% endif %}
                 </div>
             </div>
 
@@ -69,10 +71,14 @@
                                     <td>{{ hive.HausseCount }}</td>
                                     <td>{% if hive.ApiUrl is defined %}{{ hive.ApiUrl }}{% endif %}</td>
                                     <td>
+                                        {% if userid == 9 %}
+                                        <p>Vous ne pouvez pas modifier cette ruche.</p>
+                                        {% else %}
                                         <a href="{{ path("edit_hive", {hiveid:hive.Id}) }}" class="btn btn-sm btn-primary"><i
                                             class="fas fa-pencil-alt fa-sm text-white-50"></i> Éditer</a>
                                         <a href="{{ path("delete_hive", {hiveid:hive.Id}) }}" class="btn btn-sm btn-danger"><i
                                             class="fas fa-trash fa-sm text-white-50"></i> Supprimer</a>
+                                        {% endif %}
                                     </td>
                                 </tr>
                                 {% endfor %}
